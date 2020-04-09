@@ -7,6 +7,8 @@ import it.unibas.associazioni.persistenza.hibernate.DAOException;
 import it.unibas.associazioni.persistenza.hibernate.DAOUtilHibernate;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.KeyStroke;
@@ -41,7 +43,6 @@ public class ControlloFinestraModificaPersona {
                 Applicazione.getInstance().getFinestraModificaPersona().mostraErrori(errori);
                 return;
             }          
-            String vecchioCognome = personaSelezionata.getCognome();
             personaSelezionata.setNome(nome);
             personaSelezionata.setCognome(cognome);
             personaSelezionata.setRegione(regione);
@@ -56,9 +57,9 @@ public class ControlloFinestraModificaPersona {
                 Applicazione.getInstance().getFinestraAggiungiPersona().mostraErrori("Impossibile accedere al DB " + ex.getMessage());
                 return;                               
             }
-            if (vecchioCognome.equals(Applicazione.getInstance().getPannelloPrincipale().getCampoCognome())) {
-                Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneCerca().actionPerformed(e);
-            }
+            List<Persona> persone = (List<Persona>) Applicazione.getInstance().getModello().getBean(Costanti.PERSONE_CERCATE);
+            Collections.sort(persone);
+            Applicazione.getInstance().getPannelloPrincipale().aggiornaTabella();
             Applicazione.getInstance().getFinestraModificaPersona().nascondi();            
         }
 

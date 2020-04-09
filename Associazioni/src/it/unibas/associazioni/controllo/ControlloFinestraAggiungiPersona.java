@@ -58,8 +58,11 @@ public class ControlloFinestraAggiungiPersona {
                 Applicazione.getInstance().getFinestraAggiungiPersona().mostraErrori("Impossibile accedere al DB " + ex.getMessage());
                 return;
             }
-            if (cognome.equals(Applicazione.getInstance().getPannelloPrincipale().getCampoCognome())) {
-                Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneCerca().actionPerformed(e);
+            if (cognome.equalsIgnoreCase(Applicazione.getInstance().getPannelloPrincipale().getCampoCognome())) {
+                List<Persona> persone = (List<Persona>) Applicazione.getInstance().getModello().getBean(Costanti.PERSONE_CERCATE);
+                persone.add(persona);
+                Collections.sort(persone);
+                Applicazione.getInstance().getPannelloPrincipale().aggiornaTabella();
             }
             Applicazione.getInstance().getFinestraAggiungiPersona().nascondi();
         }

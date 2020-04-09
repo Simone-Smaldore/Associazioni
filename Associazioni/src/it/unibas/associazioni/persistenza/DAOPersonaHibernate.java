@@ -18,7 +18,7 @@ public class DAOPersonaHibernate extends DAOGenericoHibernate<Persona> implement
     @Override
     public List<Persona> cercaPerCognome(String cognome) throws DAOException {
         Criteria criterio = getSession().createCriteria(Persona.class);
-        criterio.add(Restrictions.eq("cognome", cognome));
+        criterio.add(Restrictions.eq("cognome", cognome).ignoreCase());
         criterio.addOrder(Order.asc("eta"));
         return criterio.list();
     }
@@ -26,7 +26,7 @@ public class DAOPersonaHibernate extends DAOGenericoHibernate<Persona> implement
     @Override
     public List<Persona> cercaPerCodiceFiscale(String codiceFiscale) throws DAOException {
         Criteria criterio = getSession().createCriteria(Persona.class);
-        criterio.add(Restrictions.eq("codiceFiscale", codiceFiscale));
+        criterio.add(Restrictions.eq("codiceFiscale", codiceFiscale).ignoreCase());
         return criterio.list();        
     }
     

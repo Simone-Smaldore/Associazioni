@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Persona  {
+public class Persona implements Comparable<Persona> {
     
     private long id;
     private String codiceFiscale;
@@ -97,6 +97,11 @@ public class Persona  {
     
     public void addIscrizione(Iscrizione iscrizione) {
         this.iscrizioni.add(iscrizione);
+    }
+
+    @Override
+    public int compareTo(Persona o) {
+        return eta - o.eta;
     }
     
     
