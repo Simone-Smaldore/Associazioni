@@ -59,7 +59,7 @@ public class ControlloPannelloPrincipale {
             List<Persona> persone = (List<Persona>) Applicazione.getInstance().getModello().getBean(Costanti.PERSONE_CERCATE);
             Persona personaScelta = persone.get(indice);
             Applicazione.getInstance().getModello().putBean(Costanti.PERSONA_SELEZIONATA, personaScelta);
-            Applicazione.getInstance().getFinestraModificaPersona().visualizza();
+            Applicazione.getInstance().getFinestraModifichePersona().visualizzaModifica();
         }
 
     }
@@ -75,7 +75,7 @@ public class ControlloPannelloPrincipale {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Applicazione.getInstance().getFinestraAggiungiPersona().visualizza();
+            Applicazione.getInstance().getFinestraModifichePersona().visualizzaSalva();
         }
 
     }

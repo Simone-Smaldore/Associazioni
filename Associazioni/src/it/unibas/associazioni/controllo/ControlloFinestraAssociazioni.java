@@ -9,6 +9,7 @@ import it.unibas.associazioni.persistenza.hibernate.DAOException;
 import it.unibas.associazioni.persistenza.hibernate.DAOUtilHibernate;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.AbstractAction;

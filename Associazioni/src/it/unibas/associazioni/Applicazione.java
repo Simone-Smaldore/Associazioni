@@ -1,8 +1,7 @@
 package it.unibas.associazioni;
 
-import it.unibas.associazioni.controllo.ControlloFinestraAggiungiPersona;
 import it.unibas.associazioni.controllo.ControlloFinestraAssociazioni;
-import it.unibas.associazioni.controllo.ControlloFinestraModificaPersona;
+import it.unibas.associazioni.controllo.ControlloFinestraModifichePersona;
 import it.unibas.associazioni.controllo.ControlloFrame;
 import it.unibas.associazioni.controllo.ControlloPannelloPrincipale;
 import it.unibas.associazioni.modello.Modello;
@@ -10,9 +9,8 @@ import it.unibas.associazioni.persistenza.DAOAssociazioneHibernate;
 import it.unibas.associazioni.persistenza.DAOPersonaHibernate;
 import it.unibas.associazioni.persistenza.IDAOAssociazione;
 import it.unibas.associazioni.persistenza.IDAOPersona;
-import it.unibas.associazioni.vista.FinestraAggiungiPersona;
 import it.unibas.associazioni.vista.FinestraAssociazioni;
-import it.unibas.associazioni.vista.FinestraModificaPersona;
+import it.unibas.associazioni.vista.FinestraModifichePersona;
 import it.unibas.associazioni.vista.FinestraStatistiche;
 import it.unibas.associazioni.vista.Frame;
 import it.unibas.associazioni.vista.PannelloPrincipale;
@@ -30,15 +28,13 @@ public class Applicazione {
     private Frame frame;
     private PannelloPrincipale pannelloPrincipale;
     private FinestraAssociazioni finestraAssociazioni;
-    private FinestraAggiungiPersona finestraAggiungiPersona;
-    private FinestraModificaPersona finestraModificaPersona;
     private FinestraStatistiche finestraStatistiche;
+    private FinestraModifichePersona finestraModifichePersona;
 
-    private ControlloFinestraModificaPersona controlloFinestraModificaPersona;
+    private ControlloFinestraModifichePersona controlloFinestraModificaPersona;
     private ControlloPannelloPrincipale controlloPannelloPrincipale;
     private ControlloFrame controlloFrame;
     private ControlloFinestraAssociazioni controlloFinestraAssociazioni;
-    private ControlloFinestraAggiungiPersona controlloFinestraAggiungiPersona;
 
     private Applicazione() {
 
@@ -57,42 +53,31 @@ public class Applicazione {
         this.controlloFrame = new ControlloFrame();
         this.controlloPannelloPrincipale = new ControlloPannelloPrincipale();
         this.controlloFinestraAssociazioni = new ControlloFinestraAssociazioni();
-        this.controlloFinestraAggiungiPersona = new ControlloFinestraAggiungiPersona();
-        this.controlloFinestraModificaPersona = new ControlloFinestraModificaPersona();
+        this.controlloFinestraModificaPersona = new ControlloFinestraModifichePersona();
 
         this.pannelloPrincipale = new PannelloPrincipale();
         this.frame = new Frame();
         this.finestraAssociazioni = new FinestraAssociazioni(frame);
-        this.finestraModificaPersona = new FinestraModificaPersona(frame);
-        this.finestraAggiungiPersona = new FinestraAggiungiPersona(frame);
         this.finestraStatistiche = new FinestraStatistiche(frame);
+        this.finestraModifichePersona = new FinestraModifichePersona(frame);
 
+        this.finestraModifichePersona.inizializza();
         this.finestraStatistiche.inizializza();
-        this.finestraAggiungiPersona.inizializza();
-        this.finestraModificaPersona.inizializza();
         this.finestraAssociazioni.inizializza();
         this.pannelloPrincipale.inizializza();
         this.frame.inizializza();
+    }
+
+    public FinestraModifichePersona getFinestraModifichePersona() {
+        return finestraModifichePersona;
     }
 
     public FinestraStatistiche getFinestraStatistiche() {
         return finestraStatistiche;
     }
 
-    public FinestraModificaPersona getFinestraModificaPersona() {
-        return finestraModificaPersona;
-    }
-
-    public ControlloFinestraModificaPersona getControlloFinestraModificaPersona() {
+    public ControlloFinestraModifichePersona getControlloFinestraModificaPersona() {
         return controlloFinestraModificaPersona;
-    }
-
-    public ControlloFinestraAggiungiPersona getControlloFinestraAggiungiPersona() {
-        return controlloFinestraAggiungiPersona;
-    }
-
-    public FinestraAggiungiPersona getFinestraAggiungiPersona() {
-        return finestraAggiungiPersona;
     }
 
     public ControlloFinestraAssociazioni getControlloFinestraAssociazioni() {
