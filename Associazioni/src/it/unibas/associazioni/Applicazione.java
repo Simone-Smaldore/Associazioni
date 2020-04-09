@@ -1,5 +1,6 @@
 package it.unibas.associazioni;
 
+import it.unibas.associazioni.controllo.ControlloFinestraAggiungiPersona;
 import it.unibas.associazioni.controllo.ControlloFinestraAssociazioni;
 import it.unibas.associazioni.controllo.ControlloFrame;
 import it.unibas.associazioni.controllo.ControlloPannelloPrincipale;
@@ -8,6 +9,7 @@ import it.unibas.associazioni.persistenza.DAOAssociazioneHibernate;
 import it.unibas.associazioni.persistenza.DAOPersonaHibernate;
 import it.unibas.associazioni.persistenza.IDAOAssociazione;
 import it.unibas.associazioni.persistenza.IDAOPersona;
+import it.unibas.associazioni.vista.FinestraAggiungiPersona;
 import it.unibas.associazioni.vista.FinestraAssociazioni;
 import it.unibas.associazioni.vista.Frame;
 import it.unibas.associazioni.vista.PannelloPrincipale;
@@ -18,14 +20,19 @@ public class Applicazione {
     private static Applicazione singleton = new Applicazione();
 
     private Modello modello;
+
     private IDAOAssociazione daoAssociazione;
     private IDAOPersona daoPersona;
+
     private Frame frame;
     private PannelloPrincipale pannelloPrincipale;
     private FinestraAssociazioni finestraAssociazioni;
+    private FinestraAggiungiPersona finestraAggiungiPersona;
+
     private ControlloPannelloPrincipale controlloPannelloPrincipale;
     private ControlloFrame controlloFrame;
     private ControlloFinestraAssociazioni controlloFinestraAssociazioni;
+    private ControlloFinestraAggiungiPersona controlloFinestraAggiungiPersona;
 
     private Applicazione() {
 
@@ -37,17 +44,32 @@ public class Applicazione {
 
     public void inizializza() {
         this.modello = new Modello();
+
         this.daoAssociazione = new DAOAssociazioneHibernate();
         this.daoPersona = new DAOPersonaHibernate();
+
         this.controlloFrame = new ControlloFrame();
         this.controlloPannelloPrincipale = new ControlloPannelloPrincipale();
         this.controlloFinestraAssociazioni = new ControlloFinestraAssociazioni();
+        this.controlloFinestraAggiungiPersona = new ControlloFinestraAggiungiPersona();
+
         this.pannelloPrincipale = new PannelloPrincipale();
         this.frame = new Frame();
         this.finestraAssociazioni = new FinestraAssociazioni(frame);
+        this.finestraAggiungiPersona = new FinestraAggiungiPersona(frame);
+
+        this.finestraAggiungiPersona.inizializza();
         this.finestraAssociazioni.inizializza();
         this.pannelloPrincipale.inizializza();
         this.frame.inizializza();
+    }
+
+    public ControlloFinestraAggiungiPersona getControlloFinestraAggiungiPersona() {
+        return controlloFinestraAggiungiPersona;
+    }
+
+    public FinestraAggiungiPersona getFinestraAggiungiPersona() {
+        return finestraAggiungiPersona;
     }
 
     public ControlloFinestraAssociazioni getControlloFinestraAssociazioni() {

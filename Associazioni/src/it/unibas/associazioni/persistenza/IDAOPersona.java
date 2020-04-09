@@ -8,4 +8,6 @@ import java.util.List;
 public interface IDAOPersona extends IDAOGenerico<Persona> {
     
     public List<Persona> cercaPerCognome(String cognome)throws DAOException;
+    
+    public List<Persona> cercaPerCodiceFiscale(String codiceFiscale) throws DAOException;
 }

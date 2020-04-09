@@ -21,6 +21,7 @@ public class ControlloPannelloPrincipale {
 
     private Action azioneCerca = new AzioneCerca();
     private Action azioneMostraAssociazioni = new AzioneMostraAssociazioni();
+    private Action azioneMostraAggiungiPersona = new AzioneMostraAggiungiPersona();
 
     public Action getAzioneCerca() {
         return azioneCerca;
@@ -28,6 +29,26 @@ public class ControlloPannelloPrincipale {
 
     public Action getAzioneMostraAssociazioni() {
         return azioneMostraAssociazioni;
+    }
+
+    public Action getAzioneMostraAggiungiPersona() {
+        return azioneMostraAggiungiPersona;
+    }
+
+    private class AzioneMostraAggiungiPersona extends AbstractAction {
+
+        public AzioneMostraAggiungiPersona() {
+            this.putValue(NAME, "Aggiungi persona");
+            this.putValue(SHORT_DESCRIPTION, "Apre una finestra per aggiungere una nuova persona");
+            this.putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("ctrl O"));
+            this.putValue(MNEMONIC_KEY, KeyEvent.VK_O);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Applicazione.getInstance().getFinestraAggiungiPersona().visualizza();
+        }
+
     }
 
     private class AzioneMostraAssociazioni extends AbstractAction {

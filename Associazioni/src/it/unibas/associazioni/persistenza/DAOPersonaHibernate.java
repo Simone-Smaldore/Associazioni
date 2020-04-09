@@ -22,5 +22,12 @@ public class DAOPersonaHibernate extends DAOGenericoHibernate<Persona> implement
         criterio.addOrder(Order.asc("eta"));
         return criterio.list();
     }
+
+    @Override
+    public List<Persona> cercaPerCodiceFiscale(String codiceFiscale) throws DAOException {
+        Criteria criterio = getSession().createCriteria(Persona.class);
+        criterio.add(Restrictions.eq("codiceFiscale", codiceFiscale));
+        return criterio.list();        
+    }
     
 }
