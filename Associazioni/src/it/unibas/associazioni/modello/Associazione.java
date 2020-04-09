@@ -56,4 +56,11 @@ public class Associazione {
         this.iscrizioni = iscrizioni;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    
+    
 }

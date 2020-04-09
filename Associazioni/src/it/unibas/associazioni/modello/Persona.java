@@ -88,13 +88,17 @@ public class Persona {
         this.eta = eta;
     }
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Iscrizione> getIscrizioni() {
         return iscrizioni;
     }
 
     public void setIscrizioni(List<Iscrizione> iscrizioni) {
         this.iscrizioni = iscrizioni;
+    }
+    
+    public void addIscrizione(Iscrizione iscrizione) {
+        this.iscrizioni.add(iscrizione);
     }
 
 }
