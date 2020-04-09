@@ -22,6 +22,7 @@ public class ControlloPannelloPrincipale {
     private Action azioneCerca = new AzioneCerca();
     private Action azioneMostraAssociazioni = new AzioneMostraAssociazioni();
     private Action azioneMostraAggiungiPersona = new AzioneMostraAggiungiPersona();
+    private Action azioneApriFinestraModifica = new AzioneApriFinestraModifica();
 
     public Action getAzioneCerca() {
         return azioneCerca;
@@ -33,6 +34,34 @@ public class ControlloPannelloPrincipale {
 
     public Action getAzioneMostraAggiungiPersona() {
         return azioneMostraAggiungiPersona;
+    }
+
+    public Action getAzioneApriFinestraModifica() {
+        return azioneApriFinestraModifica;
+    }
+
+    private class AzioneApriFinestraModifica extends AbstractAction {
+
+        public AzioneApriFinestraModifica() {
+            this.putValue(NAME, "Modifica");
+            this.putValue(SHORT_DESCRIPTION, "Apre una finestra per la modifica della persona");
+            this.putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("ctrl Y"));
+            this.putValue(MNEMONIC_KEY, KeyEvent.VK_Y);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int indice = Applicazione.getInstance().getPannelloPrincipale().getPersonaSelezionata();
+            if (indice == -1) {
+                Applicazione.getInstance().getFrame().mostraErrori("Selezionare una persona prima");
+                return;
+            }
+            List<Persona> persone = (List<Persona>) Applicazione.getInstance().getModello().getBean(Costanti.PERSONE_CERCATE);
+            Persona personaScelta = persone.get(indice);
+            Applicazione.getInstance().getModello().putBean(Costanti.PERSONA_SELEZIONATA, personaScelta);
+            Applicazione.getInstance().getFinestraModificaPersona().visualizza();
+        }
+
     }
 
     private class AzioneMostraAggiungiPersona extends AbstractAction {

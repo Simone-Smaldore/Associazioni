@@ -23,6 +23,7 @@ public class Frame extends javax.swing.JFrame {
     
     public void initActions() {
         this.jMenuItemEsci.setAction(Applicazione.getInstance().getControlloFrame().getAzioneEsci());
+        this.jMenuItemCalcolaStatistiche.setAction(Applicazione.getInstance().getControlloFrame().getAzioneCalcolaStatistiche());
     }
     
     public void mostraErrori(String errori) {
@@ -40,11 +41,15 @@ public class Frame extends javax.swing.JFrame {
 
         javax.swing.JMenuBar jMenuBar1 = new javax.swing.JMenuBar();
         javax.swing.JMenu jMenu1 = new javax.swing.JMenu();
+        jMenuItemCalcolaStatistiche = new javax.swing.JMenuItem();
         jMenuItemEsci = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("File");
+
+        jMenuItemCalcolaStatistiche.setText("jMenuItem1");
+        jMenu1.add(jMenuItemCalcolaStatistiche);
 
         jMenuItemEsci.setText("jMenuItem1");
         jMenu1.add(jMenuItemEsci);
@@ -73,6 +78,7 @@ public class Frame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jMenuItemCalcolaStatistiche;
     private javax.swing.JMenuItem jMenuItemEsci;
     // End of variables declaration//GEN-END:variables
 }

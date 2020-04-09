@@ -22,6 +22,7 @@ public class PannelloPrincipale extends javax.swing.JPanel {
         this.jTextFieldCognome.setAction(Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneCerca());
         this.jButtonMostraIscrizioni.setAction(Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneMostraAssociazioni());
         this.jButtonAggiungi.setAction(Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneMostraAggiungiPersona());
+        this.jButtonModifica.setAction(Applicazione.getInstance().getControlloPannelloPrincipale().getAzioneApriFinestraModifica());
     }
     
     public void initTable() {

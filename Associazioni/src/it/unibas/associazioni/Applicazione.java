@@ -2,6 +2,7 @@ package it.unibas.associazioni;
 
 import it.unibas.associazioni.controllo.ControlloFinestraAggiungiPersona;
 import it.unibas.associazioni.controllo.ControlloFinestraAssociazioni;
+import it.unibas.associazioni.controllo.ControlloFinestraModificaPersona;
 import it.unibas.associazioni.controllo.ControlloFrame;
 import it.unibas.associazioni.controllo.ControlloPannelloPrincipale;
 import it.unibas.associazioni.modello.Modello;
@@ -11,6 +12,8 @@ import it.unibas.associazioni.persistenza.IDAOAssociazione;
 import it.unibas.associazioni.persistenza.IDAOPersona;
 import it.unibas.associazioni.vista.FinestraAggiungiPersona;
 import it.unibas.associazioni.vista.FinestraAssociazioni;
+import it.unibas.associazioni.vista.FinestraModificaPersona;
+import it.unibas.associazioni.vista.FinestraStatistiche;
 import it.unibas.associazioni.vista.Frame;
 import it.unibas.associazioni.vista.PannelloPrincipale;
 import javax.swing.SwingUtilities;
@@ -28,7 +31,10 @@ public class Applicazione {
     private PannelloPrincipale pannelloPrincipale;
     private FinestraAssociazioni finestraAssociazioni;
     private FinestraAggiungiPersona finestraAggiungiPersona;
+    private FinestraModificaPersona finestraModificaPersona;
+    private FinestraStatistiche finestraStatistiche;
 
+    private ControlloFinestraModificaPersona controlloFinestraModificaPersona;
     private ControlloPannelloPrincipale controlloPannelloPrincipale;
     private ControlloFrame controlloFrame;
     private ControlloFinestraAssociazioni controlloFinestraAssociazioni;
@@ -52,16 +58,33 @@ public class Applicazione {
         this.controlloPannelloPrincipale = new ControlloPannelloPrincipale();
         this.controlloFinestraAssociazioni = new ControlloFinestraAssociazioni();
         this.controlloFinestraAggiungiPersona = new ControlloFinestraAggiungiPersona();
+        this.controlloFinestraModificaPersona = new ControlloFinestraModificaPersona();
 
         this.pannelloPrincipale = new PannelloPrincipale();
         this.frame = new Frame();
         this.finestraAssociazioni = new FinestraAssociazioni(frame);
+        this.finestraModificaPersona = new FinestraModificaPersona(frame);
         this.finestraAggiungiPersona = new FinestraAggiungiPersona(frame);
+        this.finestraStatistiche = new FinestraStatistiche(frame);
 
+        this.finestraStatistiche.inizializza();
         this.finestraAggiungiPersona.inizializza();
+        this.finestraModificaPersona.inizializza();
         this.finestraAssociazioni.inizializza();
         this.pannelloPrincipale.inizializza();
         this.frame.inizializza();
+    }
+
+    public FinestraStatistiche getFinestraStatistiche() {
+        return finestraStatistiche;
+    }
+
+    public FinestraModificaPersona getFinestraModificaPersona() {
+        return finestraModificaPersona;
+    }
+
+    public ControlloFinestraModificaPersona getControlloFinestraModificaPersona() {
+        return controlloFinestraModificaPersona;
     }
 
     public ControlloFinestraAggiungiPersona getControlloFinestraAggiungiPersona() {
