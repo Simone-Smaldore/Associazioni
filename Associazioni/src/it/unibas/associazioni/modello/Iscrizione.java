@@ -48,4 +48,8 @@ public class Iscrizione {
         this.persona = persona;
     }
 
+    boolean isAssociazioneIscrizione(Associazione associazione) {
+        return this.associazione.getCodice().equals(associazione.getCodice());
+    }
+
 }

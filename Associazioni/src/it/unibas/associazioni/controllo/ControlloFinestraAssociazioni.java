@@ -55,7 +55,6 @@ public class ControlloFinestraAssociazioni {
             try {
                 DAOUtilHibernate.beginTransaction();
                 Applicazione.getInstance().getDaoPersona().makePersistent(persona);
-                Applicazione.getInstance().getDaoAssociazione().makePersistent(associazioneSelezionata);
                 Iscrizione iscrizione = new Iscrizione();
                 iscrizione.setDataIscrizione(dataIscrizione);
                 iscrizione.setAssociazione(associazioneSelezionata);
@@ -72,12 +71,9 @@ public class ControlloFinestraAssociazioni {
         private String trovaErrori(Calendar dataIscrizione, Associazione associazioneScelta) {
             String errori = "";
             Persona persona = (Persona) Applicazione.getInstance().getModello().getBean(Costanti.PERSONA_SELEZIONATA);
-            List<Iscrizione> iscrizioni = persona.getIscrizioni();
-            for (Iscrizione iscrizione : iscrizioni) {
-                if(iscrizione.getAssociazione().getCodice().equals(associazioneScelta.getCodice())) {
-                    errori += "Iscrizione all'associazione già effettuata\n";
-                }
-            }
+            if(persona.isAssociazionePresente(associazioneScelta)) {
+                errori += "Iscrizione all'associazione già effettuata\n";
+            }            
             if(dataIscrizione.get(Calendar.YEAR) < associazioneScelta.getAnnoFondazione()) {
                 errori += "In quella data l'associazione non era ancora stata fondata";
             }
@@ -103,18 +99,15 @@ public class ControlloFinestraAssociazioni {
                 return;
             }
             Persona persona = (Persona) Applicazione.getInstance().getModello().getBean(Costanti.PERSONA_SELEZIONATA);
-            List<Iscrizione> iscrizioni = persona.getIscrizioni();
-            Iscrizione daEliminare = iscrizioni.get(indice);
             try {
                 DAOUtilHibernate.beginTransaction();
                 Applicazione.getInstance().getDaoPersona().makePersistent(persona);
-                persona.getIscrizioni().remove(daEliminare);
+                persona.removeIscrizioneConIndice(indice);
                 Applicazione.getInstance().getFinestraAssociazioni().aggiornaTabella();
                 DAOUtilHibernate.commit();
             } catch (DAOException ex) {
                 DAOUtilHibernate.rollback();
                 Applicazione.getInstance().getFinestraAssociazioni().mostraErrori("Impossibile accedere al DB " + ex.getMessage());
-
             }
         }
 

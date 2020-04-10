@@ -104,5 +104,17 @@ public class Persona implements Comparable<Persona> {
         return eta - o.eta;
     }
     
+    public boolean isAssociazionePresente(Associazione associazione) {
+        for (Iscrizione iscrizione : iscrizioni) {
+            if(iscrizione.isAssociazioneIscrizione(associazione)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void removeIscrizioneConIndice(int indice) {
+        this.iscrizioni.remove(indice);
+    }
     
 }
